@@ -80,4 +80,64 @@ function deepDup(arr){
     return deep_duped;
 }
 
-console.log(deepDup([[2,[3,5,6]],1]));
+// console.log(deepDup([[2,[3,5,6]],1]));
+
+function bsearch(arr,target){
+    if (target === arr[Math.floor(arr.length/2)]){
+        // debugger;
+        return Math.floor(arr.length/2);
+    }
+    else if ((arr.length === 1) && (arr[0] != target)) {
+        // debugger;
+        return -1;
+    }
+
+    if (arr[Math.floor(arr.length/2)] > target) {
+        // debugger;
+        return bsearch(arr.slice(0, Math.floor(arr.length/2)), target);
+    }
+    else if (arr[Math.floor(arr.length/2)] < target) {
+        let right_search = bsearch(arr.slice(((Math.floor(arr.length/2)) + 1), arr.length), target) 
+        if (right_search === -1) {
+            // debugger;
+            return -1;
+        }
+        else {
+            // debugger;
+            return right_search + (Math.floor(arr.length/2) + 1)
+        }
+    }
+}
+
+let test_arr_thing = [1,2,3,4,5,6,7,8,9,10];
+console.log(bsearch(test_arr_thing, 1));
+console.log(bsearch(test_arr_thing, 2));
+console.log(bsearch(test_arr_thing, 3));
+console.log(bsearch(test_arr_thing, 4));
+console.log(bsearch(test_arr_thing, 5));
+console.log(bsearch(test_arr_thing, 6));
+console.log(bsearch(test_arr_thing, 7));
+console.log(bsearch(test_arr_thing, 8));
+console.log(bsearch(test_arr_thing, 9));
+console.log(bsearch(test_arr_thing, 10));
+
+function mergesort(arr) {
+
+}
+
+function merger(arr1, arr2) {
+    let merged_arr = [];
+    while (arr1.length != 0 && arr2.length != 0) {
+        switch (arr1[0] <= arr2[0]) {
+            case true:
+                merged_arr.push(arr1.shift());
+            break;
+            case false:
+                merged_arr.push(arr2.shift());
+            break;
+        }
+    }
+    merged_arr = merged_arr.concat(arr1);
+    merged_arr = merged_arr.concat(arr2);
+    return merged_arr;
+}
